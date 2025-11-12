@@ -1,69 +1,59 @@
 def add(a, b):
-    """Повертає суму двох чисел."""
+    """Додавання двох чисел"""
     return a + b
 
 def subtract(a, b):
-    """Повертає різницю двох чисел."""
+    """Віднімання двох чисел"""
     return a - b
 
 def multiply(a, b):
-    """Повертає добуток двох чисел."""
+    """Множення двох чисел"""
     return a * b
 
 def divide(a, b):
-    """Повертає частку двох чисел. Обробляє ділення на нуль."""
+    """Ділення двох чисел"""
     if b != 0:
         return a / b
     else:
-        # Повертаємо повідомлення про помилку замість виконання операції
-        return "Помилка: Ділення на нуль!"
+        return "Помилка: ділення на нуль!"
 
-def calculator_app():
-    """Основна функція, яка запускає інтерфейс калькулятора."""
-    print("=== Простий Калькулятор ===")
-    print("Доступні операції: +, -, *, /")
-    print("Щоб вийти, введіть 'exit'")
+def power(a, b):
+    """Піднесення числа a до степеня b"""
+    return a ** b
 
-    while True:
-        # Запит операції
-        operation = input("\nВведіть операцію (+, -, *, /) або 'exit': ")
+print("=== Простий калькулятор ===")
+print("Операції: +, -, *, /, **")
+print("Для виходу введіть 'exit'")
 
-        # 1. Обробка команди 'exit'
-        if operation.lower() == 'exit':
-            print("Дякую за використання!")
-            break
+while True:
+    operation = input("\nВведіть операцію (+, -, *, /, **) або 'exit': ")
 
-        # 2. Перевірка на коректність операції
-        if operation not in ['+', '-', '*', '/']:
-            print("Невідома операція! Спробуйте ще раз.")
-            continue
+    # 1. Обробка команди 'exit'
+    if operation.lower() == 'exit':
+        print("До побачення!")
+        break # Вихід з циклу
 
-        try:
-            # 3. Запит чисел
-            num1 = float(input("Введіть перше число: "))
-            num2 = float(input("Введіть друге число: "))
+    # 2. Обробка невірної операції
+    if operation not in ['+', '-', '*', '/', '**']:
+        print("Невірна операція!")
+        continue # Повернення на початок циклу
 
-            # 4. Виконання операції
-            if operation == '+':
-                result = add(num1, num2)
-            elif operation == '-':
-                result = subtract(num1, num2)
-            elif operation == '*':
-                result = multiply(num1, num2)
-            elif operation == '/':
-                # Функція divide сама обробляє ділення на нуль
-                result = divide(num1, num2)
+    try:
+        num1 = float(input("Введіть перше число: "))
+        num2 = float(input("Введіть друге число: "))
 
-            # 5. Виведення результату
-            print(f"Результат: {result}")
+        if operation == '+':
+            result = add(num1, num2)
+        elif operation == '-':
+            result = subtract(num1, num2)
+        elif operation == '*':
+            result = multiply(num1, num2)
+        elif operation == '/':
+            result = divide(num1, num2)
+        elif operation == '**':
+            result = power(num1, num2)
 
-        except ValueError:
-            # Обробка випадку, коли користувач ввів нечислові дані
-            print("Помилка: Введіть коректне число!")
-        except Exception as e:
-            # Обробка інших неочікуваних помилок
-            print(f"Неочікувана помилка: {e}")
+        print(f"Результат: {result}")
 
-# Виконання коду, якщо файл запускається безпосередньо
-if __name__ == "__main__":
-    calculator_app()
+    except ValueError:
+        print("Помилка: введіть коректні числа!")
