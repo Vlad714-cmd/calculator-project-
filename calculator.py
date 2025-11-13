@@ -28,12 +28,12 @@ print("Для виходу введіть 'exit'")
 while True:
     operation = input("\nВведіть операцію (+, -, *, /, **) або 'exit': ")
 
-    # 1. Обробка команди 'exit'
+
     if operation.lower() == 'exit':
         print("До побачення!")
         break # Вихід з циклу
 
-    # 2. Обробка невірної операції
+   
     if operation not in ['+', '-', '*', '/', '**']:
         print("Невірна операція!")
         continue # Повернення на початок циклу
